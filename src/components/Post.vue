@@ -13,8 +13,8 @@ const id = computed(() => route.params.id);
 })();
 
 (async () => {
-  users.value = await getJsonplaceholderData('users')
-})()
+  users.value = await getJsonplaceholderData("users");
+})();
 </script>
 
 <template>
@@ -32,24 +32,22 @@ const id = computed(() => route.params.id);
       </ul>
     </header>
     <div>
-      <ul>
-        <template v-for="post in posts" :key="post.title">
-          <li v-if="post.id == id">
-            Заголовок: {{ post.title }}
-            <br />
-            Текст: {{ post.body }}
-            <br />
-            Об авторе:
-            <template v-for="user in users" :key="user.id">
-              <ul v-if="post.userId === user.id">
-                <li>Имя пользователя: {{ user.name }}</li>
-                <li>Email: {{ user.email }}</li>
-                <li>Телефон: {{ user.phone }}</li>
-                <li>Website: {{ user.website }}</li>
-              </ul>
-            </template>
-          </li>
-        </template>
+      <ul v-for="post in posts" :key="post.title">
+        <li v-if="post.id == id">
+          Заголовок: {{ post.title }}
+          <br />
+          Текст: {{ post.body }}
+          <br />
+          Об авторе:
+          <template v-for="user in users" :key="user.id">
+            <ul v-if="post.userId === user.id">
+              <li>Имя пользователя: {{ user.name }}</li>
+              <li>Email: {{ user.email }}</li>
+              <li>Телефон: {{ user.phone }}</li>
+              <li>Website: {{ user.website }}</li>
+            </ul>
+          </template>
+        </li>
       </ul>
     </div>
     <section>
