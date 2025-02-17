@@ -5,10 +5,8 @@ import { getJsonplaceholderData } from "@/api/myFetch.js";
 const posts = ref([]);
 
 (async () => {
-  posts.value = await getJsonplaceholderData('posts')
-})()
-
-
+  posts.value = await getJsonplaceholderData("posts");
+})();
 </script>
 
 <template>
@@ -25,16 +23,16 @@ const posts = ref([]);
       </ul>
     </header>
 
-    <ol >
-      <template v-for="(post, index) in posts" :key="post.id">
+    <ol>
+      <li
+        v-for="(post, index) in posts"
+        :key="post.id"
+        @click.prevent.right="posts.splice(index, 1)"
+      >
         <router-link :to="{ name: 'post', params: { id: post.id } }">
-          <li
-            @click.prevent.right="posts.splice(index ,1)"
-          >
-            {{ post.title }}
-          </li>
+          {{ post.title }}
         </router-link>
-      </template>
+      </li>
     </ol>
 
     <section>
