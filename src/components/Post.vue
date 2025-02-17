@@ -32,7 +32,7 @@ const id = computed(() => route.params.id);
       </ul>
     </header>
     <div>
-      <ol>
+      <ul>
         <template v-for="post in posts" :key="post.title">
           <li v-if="post.id == id">
             Заголовок: {{ post.title }}
@@ -50,7 +50,7 @@ const id = computed(() => route.params.id);
             </template>
           </li>
         </template>
-      </ol>
+      </ul>
     </div>
     <section>
       <router-view />
