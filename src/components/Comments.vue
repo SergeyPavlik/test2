@@ -2,16 +2,16 @@
 import { ref } from "vue";
 import { getJsonplaceholderData } from "@/api/myFetch.js";
 
-const posts = ref([]);
+const comments = ref(null);
 
 (async () => {
-  posts.value = await getJsonplaceholderData("posts");
+  comments.value = await getJsonplaceholderData("comments");
 })();
 </script>
 
 <template>
   <main>
-    <h1>Список постов</h1>
+    <h1>Список комментариев</h1>
     <header>
       <ul class="breadcrumbs">
         <li>
@@ -24,16 +24,13 @@ const posts = ref([]);
     </header>
     <ol>
       <li
-        v-for="(post, index) in posts"
-        :key="post.id"
-        @click.prevent.right="posts.splice(index, 1)"
+        v-for="(comment, index) in comments"
+        :key="comment.id"
+        @click.prevent.right="comments.splice(index, 1)"
       >
-        <router-link :to="{ name: 'post', params: { id: post.id } }">
-          {{ post.title }}
-        </router-link>
+        {{ comment.name }}
       </li>
     </ol>
-
     <section>
       <router-view />
     </section>
