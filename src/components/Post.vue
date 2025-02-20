@@ -19,37 +19,54 @@ const id = computed(() => route.params.id);
 
 <template>
   <main>
-    <h1>Пост № {{ id }}</h1>
-    <header>
-      <ul class="breadcrumbs">
+    <h1 class="text-4xl m-5 text-center">Пост № {{ id }}</h1>
+    <nav class="w-100% m-0 bg-zinc-50 opacity-80 p-2">
+      <ol class="flex justify-center">
         <li>
-          <router-link :to="{ name: 'home' }"> Главная страница </router-link>
+          <router-link
+            :to="{ name: 'home' }"
+            class="text-neutral-400 transition duration-500 hover:text-black/80 hover:underline decoration-1"
+          >
+            Главная страница
+          </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'post-list' }"> Список постов </router-link>
+          <span class="mx-2 text-neutral-400">/</span>
         </li>
-        <li>Пост № {{ id }}</li>
-      </ul>
-    </header>
-    <div>
-      <ul v-for="post in posts" :key="post.title">
-        <li v-if="post.id == id">
-          Заголовок: {{ post.title }}
-          <br />
-          Текст: {{ post.body }}
-          <br />
-          Об авторе:
+        <li>
+          <router-link
+            :to="{ name: 'post-list' }"
+            class="text-neutral-400 transition duration-500 hover:text-black/80 hover:underline decoration-1"
+          >
+            Список постов
+          </router-link>
+        </li>
+        <li>
+          <span class="mx-2 text-neutral-400">/</span>
+        </li>
+        <li class="text-neutral-400">Пост № {{ id }}</li>
+      </ol>
+    </nav>
+    <ul v-for="post in posts" :key="post.title" class="text-lg">
+      <li v-if="post.id == id">
+        <p class="italic first-letter:uppercase text-center m-3">
+          {{ post.title }}.
+        </p>
+        <p class="italic first-letter:uppercase text-center m-3">
+          {{ post.body }}.
+        </p>
+        <div class="flex justify-end m-3">
           <template v-for="user in users" :key="user.id">
             <ul v-if="post.userId === user.id">
-              <li>Имя пользователя: {{ user.name }}</li>
+              <li>Автор: {{ user.name }}</li>
               <li>Email: {{ user.email }}</li>
               <li>Телефон: {{ user.phone }}</li>
               <li>Website: {{ user.website }}</li>
             </ul>
           </template>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li>
+    </ul>
     <section>
       <router-view />
     </section>

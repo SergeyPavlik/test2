@@ -11,18 +11,24 @@ const users = ref([]);
 
 <template>
   <main>
-    <h1>Список пользователей</h1>
-    <header>
-      <ul class="breadcrumbs">
+    <h1 class="text-4xl m-5 text-center">Список пользователей</h1>
+    <nav class="w-100% m-0 bg-zinc-50 opacity-80 p-2 ">
+      <ol class="flex justify-center">
         <li>
-          <router-link :to="{ name: 'home' }"> Главная страница </router-link>
+          <router-link
+            :to="{ name: 'home' }"
+            class=" text-neutral-400 transition duration-500 hover:text-black/80 hover:underline decoration-1"
+          >
+            Главная страница
+          </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'post-list' }"> Список постов </router-link>
+          <span class="mx-2 text-neutral-400">/</span>
         </li>
-      </ul>
-    </header>
-    <ol>
+        <li class="text-neutral-400">Список пользователей</li>
+      </ol>
+    </nav>
+    <ol class="text-center m-3 italic text-lg ">
       <li
         v-for="(user, index) in users"
         :key="user.id"

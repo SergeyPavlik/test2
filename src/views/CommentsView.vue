@@ -1,7 +1,7 @@
 <script setup>
-import Comments from '@/components/Comments.vue';
+import Comments from "@/components/Comments.vue";
 </script>
 
 <template>
-  <Comments/>
+  <Comments />
 </template>
